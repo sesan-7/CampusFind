@@ -1,0 +1,149 @@
+body {
+    background-color: #f3f4f6;
+    font-family: Arial, sans-serif;
+    color: #000;
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  /* Ensure content is not hidden behind the fixed header */
+  .main-content {
+    padding-top: 70px; /* Adjust for fixed header height */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Form Container */
+  .flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: calc(100vh - 80px); /* Adjust height based on header */
+  }
+  
+  /* Form Styling */
+  form {
+background: white;
+    padding: 50px;
+  border-radius: 8px; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    margin: auto;
+  } 
+  
+  /* Input Fields */
+  input {
+
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #cec6c6;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background: #ffffff;
+    color: #000;
+
+  
+  }
+  
+  input:focus {
+    border-color: #010101;
+    outline: none;
+  }
+  
+  /* Password Visibility Toggle */
+  .password-container {
+    position: relative;
+  }
+  
+  .password-toggle {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  .password-toggle:hover {
+    color: #333;
+  }
+  
+  /* Button Styling */
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #050606;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background-color: #424344;
+  }
+  
+  /* Logo Styling */
+
+  .logo-info{
+    width: 50%;
+  }
+  .logo {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: Verdana, sans-serif;
+    cursor: pointer;
+  }
+  
+  .logo h1 {
+    font-size: 60px;
+  }
+  
+  .logo p {
+    font-size: 20px;
+    color: #6c6c6c;
+    transform: translateY(-40px);
+  }
+  
+  /* Instruction Text */
+  .redirect{
+    margin-top: 20px;
+    font-size: 20px;
+    text-align: center;
+   
+    cursor: pointer;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .main-content {
+      padding-top: 70px; /* Adjust for mobile header */
+    }
+  
+    .flex {
+      height: auto;
+    }
+  
+    form {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    .logo h1 {
+      font-size: 30px;
+    }
+  
+    .logo p {
+      font-size: 14px;
+    }
+  }
+  

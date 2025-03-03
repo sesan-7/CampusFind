@@ -1,0 +1,314 @@
+/* 
+
+body {
+    background-color: #f3f4f6;
+    font-family: Arial, sans-serif;
+    color: #000;
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: fit-content;
+    margin-top: 130px;
+  }
+  
+  
+  .flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  
+  form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    margin: 0  auto;
+    transform: translateY(px);
+    
+  
+  }
+  
+  input {
+    width: 90%;
+    padding: 10px;
+    border:1px solid #cec6c6;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background:#ffffff;
+    color:#000;
+    
+  }
+  
+  input:focus {
+    border-color: #010101;
+    outline: none;
+  }
+  
+  
+  .password-container {
+    position: relative;
+  }
+  
+  .password-toggle {
+    position: absolute;
+    right:25px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  
+  }
+  
+  .password-toggle:hover {
+    color: #333;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    /* background-color: #878889; *//*
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  
+  .logo{
+    color: #000;
+    margin-bottom: 100px;
+    padding-right: 50px;
+    font-family: Verdana, sans-serif;
+    cursor: pointer;
+  
+  }
+  .logo h1{
+    font-size: 60px;
+  }
+  
+  
+  .logo p{
+    font-size: 20px;
+    color: #6c6c6c;
+    transform: translateY(-40px);
+  }
+  /* button:hover {
+    background-color: #090909;
+  
+  } */
+  /*
+.Icontent{
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0)
+}
+.Icontent h1{
+  font-size: 50px;
+  color: #333;
+  margin-bottom: 20px;
+
+}
+.Icontent p{
+  font-size: 20px;
+  color: #666;
+  margin-bottom: 20px;
+  
+}
+
+
+
+
+  .inst{
+    margin-top: 50px;
+    margin-left: 5px;
+    font-size: small;
+    align-items: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    cursor: pointer;
+  } 
+  @media screen and (max-width: 768px) {
+    .flex {
+        height: auto;
+    }
+    
+    form {
+        width: 90%;
+        padding: 15px;
+    }
+    
+    .logo h1 {
+        font-size: 30px;
+    }
+    
+    .logo p {
+        font-size: 14px;
+    }
+  }
+   */
+
+   body {
+    background-color: #f3f4f6;
+    font-family: Arial, sans-serif;
+    color: #000;
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+/* Main Content Styling */
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: calc(100vh - 80px); /* Adjust height based on header */
+}
+
+/* Form Container */
+form {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    margin: auto;
+}
+
+/* Input Fields */
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cec6c6;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    background: #ffffff;
+    color: #000;
+}
+
+input:focus {
+    border-color: #333;
+    outline: none;
+}
+
+/* Password Visibility Toggle */
+.password-container {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+}
+
+.password-toggle:hover {
+    color: #000;
+}
+
+/* Button Styling */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #080808;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #3f4242;
+}
+
+/* Logo Styling */
+.logo {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: Verdana, sans-serif;
+    cursor: pointer;
+}
+
+.logo h1 {
+    font-size: 60px;
+    margin: 0;
+}
+
+.logo p {
+    font-size: 20px;
+    color: #6c6c6c;
+    transform: translateY(-40px);
+}
+
+/* Instruction Text */
+.inst {
+    margin-top: 20px;
+    font-size: small;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    cursor: pointer;
+}
+
+/* Institution Content Box */
+.Icontent {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    /* background-color: #f8f9fa; */
+    /* border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); */
+    text-align: center;
+}
+
+.Icontent h1 {
+    font-size: 50px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.Icontent p {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .flex {
+        height: auto;
+    }
+
+    form {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .logo h1 {
+        font-size: 35px;
+    }
+
+    .logo p {
+        font-size: 14px;
+    }
+
+    .Icontent {
+        width: 90%;
+    }
+}
