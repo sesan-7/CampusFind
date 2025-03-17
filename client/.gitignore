@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# firestore config files
+# THESE CREDENTIALS MUST BE STORED SAFELY
+
+src/firebase/*
+# firebase/firebase_config.js
