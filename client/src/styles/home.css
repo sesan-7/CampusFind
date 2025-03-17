@@ -3,7 +3,7 @@
 .home {
     font-family: Arial, sans-serif;
     text-align: center;
-    padding-top: 250px; /* To prevent content from hiding behind fixed header */
+    padding-top: 1300px; /* To prevent content from hiding behind fixed header */
   }
   
   /* Hero Section */

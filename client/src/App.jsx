@@ -1,11 +1,11 @@
 // import { useState } from "react";
 import "./App.css";
-import InstitutionSchemaPage from "./development_pages/InstitutionMemberSchema";
+// import InstitutionSchemaPage from "./development_pages/InstitutionMemberSchema";
 import Router from "./Router/campusRouter";
 function App() {
-  // return <Router />;
+  return <Router />;
   // To allow me to test components individually
-  return <InstitutionSchemaPage />;
+  // return <InstitutionSchemaPage />;
 }
 
 export default App;

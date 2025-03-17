@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 
 // //Pages ...........................
 import Home from "../pages/Home";
+
 import About from "../pages/About";
 // import ErrorPage from "../pages/ErrorPage";
 import Login from "../pages/Login";
@@ -14,6 +15,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Institution from "../pages/Institution";
 import InstitutionSchemaPage from "../development_pages/InstitutionMemberSchema";
+import ProfilePage from "../pages/Profile";
 
 export default function BlogRouter() {
   return (
@@ -32,7 +34,8 @@ export default function BlogRouter() {
         {/* DEVELOPEMENT PAGES */}
         {/* For institution member schema page */}
 
-        <Route path="/dev/memberschema" element={<InstitutionSchemaPage/>}/>
+        <Route path="/dev/memberschema" element={<InstitutionSchemaPage />} />
+        <Route path="/dev/profile" element={<ProfilePage />} />
       </Routes>
       <Footer />
     </Router>

@@ -20,7 +20,7 @@ export default function About() {
         <p>
           **CampusFind** is a smart platform designed to **help students,
           faculty, and visitors** navigate their campus, discover events, and
-          connect with communities. Whether you're searching for a **lecture
+          connect with communities. Whether you are searching for a **lecture
           hall, a library, or a social event**, CampusFind makes it easy and
           efficient.
         </p>

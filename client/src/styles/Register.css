@@ -13,11 +13,13 @@ body {
   
   /* Ensure content is not hidden behind the fixed header */
   .main-content {
-    padding-top: 70px; /* Adjust for fixed header height */
+    padding-top: 600px; /* Adjust for fixed header height */
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+   
+    
   }
   
   /* Form Container */
@@ -31,6 +33,7 @@ body {
   
   /* Form Styling */
   form {
+
 background: white;
     padding: 50px;
   border-radius: 8px; 
