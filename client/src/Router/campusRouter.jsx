@@ -13,6 +13,7 @@ import Login from "../pages/Login";
 // import Logout from "../pages/Logout";
 import Register from "../pages/Register";
 import Institution from "../pages/Institution";
+import InstitutionSchemaPage from "../development_pages/InstitutionMemberSchema";
 
 export default function BlogRouter() {
   return (
@@ -27,6 +28,11 @@ export default function BlogRouter() {
         <Route path="/Institution" element={<Institution />} />
         <Route path="/about" element={<About />} />
         {/* <Route path="*" element={<ErrorPage />} /> */}
+
+        {/* DEVELOPEMENT PAGES */}
+        {/* For institution member schema page */}
+
+        <Route path="/dev/memberschema" element={<InstitutionSchemaPage/>}/>
       </Routes>
       <Footer />
     </Router>
