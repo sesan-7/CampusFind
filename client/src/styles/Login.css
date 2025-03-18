@@ -32,17 +32,21 @@ body {
 
 /* Form Styling */
 form {
+  align-content: center;
+  align-items: center;
+  align-self: center;
   background: white;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   width: 400px;
   margin: auto;
 }
 
 /* Input Fields */
 input {
-  width: 90%;
+  align-self: center;
+  width: 100%;
   padding: 10px;
   border: 1px solid #cec6c6;
   border-radius: 5px;

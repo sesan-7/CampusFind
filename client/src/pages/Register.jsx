@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import axios from 'axios';
 import { Link } from "react-router-dom";
 import "../styles/Register.css";
 
@@ -11,11 +12,33 @@ export default function RegisterForm() {
     watch,
     formState: { errors },
   } = useForm();
+
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+
+  const registerAdmin = (e) => {
+    axios.post(
+      "http://localhost:8080/register_admin", null, {
+      params: {
+        email: email,
+        username: username,
+        password: password
+      },
+
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+    )
+      .catch((e) => {
+        console.log(e)
+      });
+  };
+
   const [showPassword, setShowPassword] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
 
   const onSubmit = (data) => {
-    console.log("User Data:", data);
     setIsRegistered(true);
   };
 
@@ -47,14 +70,18 @@ export default function RegisterForm() {
             </div> */}
             <h1>Sign-Up</h1>
             <input
-              {...register("name", { required: "Full name is required" })}
-              placeholder="Full Name"
+              {...register("name", { required: "Username is required" })}
+              placeholder="Username"
+              value={username}
+              onChange={(e) => { setUsername(e.target.value) }}
             />
 
             <input
               type="email"
               {...register("email", { required: "Email is required" })}
               placeholder="Email"
+              value={email}
+              onChange={(e) => { setEmail(e.target.value) }}
             />
 
             <div className="password-container">
@@ -106,7 +133,7 @@ export default function RegisterForm() {
               )}
             </div>
 
-            <button type="submit">Register</button>
+            <button type="submit" onClick={() => { registerAdmin() }}>Register</button>
 
             <div className="redirect">
               <p>

@@ -88,7 +88,7 @@ const Header = () => {
     <header className={`header ${scrolled ? "scrolled" : ""}`}>
       <div className="container">
         <Link to="/" className="logo">
-          <h1>CampusFind</h1>
+          <h1>CampusFind</h1><br></br>
           <p>Efficient.Precise.Simple</p>
         </Link>
         <nav className={`nav ${menuOpen ? "open" : ""}`}>
@@ -113,6 +113,12 @@ const Header = () => {
                 Sign-Up
               </Link>
             </li>
+            <li>
+              <Link to="/login" onClick={() => setMenuOpen(false)}>
+                Log In
+              </Link>
+            </li>
+
           </ul>
         </nav>
         <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import "./Dashboard.css";
+import { useAuth } from "../context/AuthContext";
 
 export default function Dashboard() {
   const [selected, setSelected] = useState("Home");
+  const { user, token } = useAuth();
 
   return (
     <div className="dashboard-container main-content">
