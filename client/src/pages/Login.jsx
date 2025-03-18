@@ -18,7 +18,7 @@ export default function LoginForm() {
 
   const authContext = useAuth();
 
-  const { user, token, login, logout } = authContext || {};
+  const { login } = authContext || {};
 
   // useEffect(()=>{
   //   logout();

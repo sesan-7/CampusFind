@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import "../styles/Institution.css";
+import axios from "axios";
+import { useAuth } from "../context/AuthContext";
 
 export default function Form() {
   const {
@@ -8,11 +10,35 @@ export default function Form() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const { token } = useAuth();
+
   const [isRegistered, setIsRegistered] = useState(false);
 
   const onSubmit = (data) => {
+    console.log("AuthToken" + token);
     console.log("Institution Data:", data);
     setIsRegistered(true);
+
+    axios.post(
+      "http://localhost:8080/register_institution", null, {
+      params: {
+        institutionName: data.institutionName,
+        contactEmail: data.email,
+        type: data.type,
+        location: data.location,
+        address: data.address
+      },
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    }
+    )
+      .catch((e) => {
+        console.log(e)
+      });
+
   };
 
   return (

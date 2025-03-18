@@ -1,5 +1,5 @@
 import "./App.css";
-import Router from "./Router/campusRouter";
+import Router from "./Router/CampusFindRouter.jsx"
 
 function App() {
   return <Router />;
