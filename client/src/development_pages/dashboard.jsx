@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./Dashboard.css";
 import { useAuth } from "../context/AuthContext";
+import LoginForm from "../pages/Login";
+import InstitutionSchemaPage from "./InstitutionMemberSchema";
 
 export default function Dashboard() {
   const [selected, setSelected] = useState("Home");
@@ -16,9 +18,10 @@ export default function Dashboard() {
         <nav className="menu">
           {[
             { name: "Home", icon: "🏠" },
+            { name: "Member Schema", icon: "" },
             { name: "Analytics", icon: "📊" },
             { name: "Settings", icon: "⚙️" },
-            { name: "Log Out", icon: "" },
+            { name: "Log Out", icon: "<- " },
           ].map((item) => (
             <button
               key={item.name}
@@ -39,9 +42,11 @@ export default function Dashboard() {
           <h1>{selected}</h1>
           <span>User: John Doe</span>
         </div>
-        
+
         {/* Empty Center Pane */}
-        <div className="center-pane"></div>
+          <div className="center-pane">
+            <InstitutionSchemaPage></InstitutionSchemaPage>
+        </div>
       </div>
     </div>
   );

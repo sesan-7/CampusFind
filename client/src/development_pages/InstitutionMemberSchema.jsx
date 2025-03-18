@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import "../styles/InstitutionSchema.css";
+import axios from 'axios'
+import { useAuth } from "../context/AuthContext";
 
 function InstitutionSchemaPage() {
   const [selectedMemberRole, selectMemberRole] = useState("Student");
@@ -8,6 +10,8 @@ function InstitutionSchemaPage() {
 
   const [newAttributeName, setNewAttributeName] = useState("");
   const [newAttributeType, setNewAttributeType] = useState("string");
+
+  const { token } = useAuth();
 
   const [schema, setSchema] = useState({
     Student: {
@@ -22,19 +26,30 @@ function InstitutionSchemaPage() {
     },
   });
 
+  const updateSchema = () => {
+    const institutionMemberSchema = {
+      institutionId: 12345,
+      schema: schema,
+    };
+
+    console.log("Schema update API called");
+    axios
+      .post("http://localhost:8080/update_schema", institutionMemberSchema, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   const dataTypes = ["string", "number"];
 
   useEffect(() => {
     console.log("Updated object : ", schema);
   }, [schema]);
-
-  // useEffect(() => {
-  //     console.log("Updated new attribute name : ", newAttributeName);
-  // }, [newAttributeName]);
-
-  // useEffect(() => {
-  //     console.log("Updated new attribute type : ", newAttributeType);
-  // }, [newAttributeType]);
 
   const selectMemberRoleOption = (event) => {
     selectMemberRole(event.target.value);
@@ -140,7 +155,7 @@ function InstitutionSchemaPage() {
       >
         Create attribute
       </button>
-      <button>Add schema</button>
+      <button onClick={()=>{updateSchema()}}>Update schema</button>
     </center>
   );
 }

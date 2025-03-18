@@ -3,6 +3,7 @@ import { useState } from "react";
 import "../styles/Institution.css";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 export default function Form() {
   const {
@@ -114,10 +115,11 @@ export default function Form() {
             )}
           </div>
 
-          <button type="submit">Register</button>
-          <div className="redirect">
-            <p>Already registered the institution? Login</p>
-          </div>
+          <Link to={"/dev/dashboard"} type="submit">
+            <button type="submit">
+              Register Institution
+            </button>
+          </Link>
         </form>
       )}
     </div>

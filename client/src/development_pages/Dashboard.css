@@ -19,11 +19,13 @@
 
 .main-content {
   flex-grow: 1;
+  top: 50px;
   display: flex;
   flex-direction: column;
-  padding-top: 200px;
-  margin-left: 250px; /* Ensure content doesn't overlap with sidebar */
-  width: calc(100vw - 250px);
+  padding-top: 50px;
+  margin-left: 100px; 
+  width: calc(100vw - 100px);
+  overflow: auto;
 }
 
 .dashboard-text {
@@ -31,7 +33,7 @@
 }
 
 .maincont {
-  padding-top: 200px; /* Adjust to ensure child elements are not overlapped */
+  padding-top: 200px; 
 }
 
 .top-bar {
@@ -40,7 +42,7 @@
   height: 50px;
   width: 100%;
   display: flex;
-  font-size: 8pt;
+  font-size: 6pt;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
@@ -51,13 +53,28 @@
   right: 0;
 }
 
-.center-pane {
-  flex-grow: 1;
-  margin-top: 50px; /* Push content below top bar */
-  background: white;
-}
-
 .menu-item {
     align-self: left;
     width: 200px;
+}
+
+.center-pane {
+    display: flex;
+    justify-content: left;
+    vertical-align: top;
+    align-items: center;
+    margin-top: 0px;
+    flex-grow: 0; 
+    height: 100%;
+    width: calc(100vw - 250px);
+    overflow: auto; 
+}
+
+.center-content {
+    background: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    align-items: center;
 }
