@@ -65,3 +65,11 @@ h4 button {
 h4 button:hover {
   background: #a71d2a;
 }
+
+.attribute-type {
+  width: 225px;
+}
+
+#attribute-type-label {
+  font-size: 12px;
+}

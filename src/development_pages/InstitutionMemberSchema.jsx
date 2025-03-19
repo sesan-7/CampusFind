@@ -4,49 +4,49 @@ import axios from 'axios'
 import { useAuth } from "../context/AuthContext";
 
 function InstitutionSchemaPage() {
-  const [selectedMemberRole, selectMemberRole] = useState("Student");
-
-  const options = ["Student", "Professor", "Admin"];
+  const [selectedMemberRole, selectMemberRole] = useState("");
 
   const [newAttributeName, setNewAttributeName] = useState("");
   const [newAttributeType, setNewAttributeType] = useState("string");
 
+  const [newRole, setNewRole] = useState("");
+
+  const authContext = useAuth();
   const { token } = useAuth();
 
   const [schema, setSchema] = useState({
-    Student: {
-      register_id: "string",
-      department: "string",
-      class: "string",
-    },
-    Professor: {
-      faculty_id: "string",
-      role: "string",
-      class: "string",
-    },
+    // Student: {
+    //   register_id: "string",
+    //   department: "string",
+    //   class: "string",
+    // },
+    // Professor: {
+    //   faculty_id: "string",
+    //   role: "string",
+    //   class: "string",
+    // },
+    // Professor : {name : "Santhosh"}
   });
 
   const updateSchema = () => {
-    const institutionMemberSchema = {
-      institutionId: 12345,
-      schema: schema,
-    };
 
-    console.log("Schema update API called");
     axios
-      .post("http://localhost:8080/update_schema", institutionMemberSchema, {
+      .post("http://localhost:8080/update_schema", schema, {
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          "Authorization": `Bearer ${authContext.token}`,
         },
       })
       .catch((e) => {
         console.log(e);
       });
-  };
+  }
 
   const dataTypes = ["string", "number"];
 
+  const schemaEmpty = () => {
+    return Object.entries(schema).length > 0
+  }
   useEffect(() => {
     console.log("Updated object : ", schema);
   }, [schema]);
@@ -81,20 +81,30 @@ function InstitutionSchemaPage() {
     });
   };
 
+  const createUserRole = (role) => {
+    if (!role.trim() || schema[role]) return;
+
+    setSchema((prevSchema) => ({
+      ...prevSchema,
+      [role]: {},
+    }));
+
+    selectMemberRole(role);
+  };
+
   return (
     <center>
-      <select onChange={selectMemberRoleOption} value={selectedMemberRole}>
-        {options.map((option, index) => (
+      {schemaEmpty() && <select onChange={selectMemberRoleOption} value={selectedMemberRole}>
+        {Object.keys(schema).map((option, index) => (
           <option key={index} value={option}>
             {option}
           </option>
         ))}
-      </select>
-      {Object.entries(schema[selectedMemberRole]).map(([key, value]) => {
+      </select>}
+      {schema[selectedMemberRole] && Object.entries(schema[selectedMemberRole]).map(([key, value]) => {
         return (
           <h4 key={key}>
             {key}
-
             {
               <select
                 value={value}
@@ -123,6 +133,20 @@ function InstitutionSchemaPage() {
       })}
       <br />
       <input
+        placeholder="User role"
+        value={newRole}
+        onChange={(event) => { setNewRole(() => { return event.target.value; }); }}
+      ></input>
+      <button
+        onClick={() => {
+          createUserRole(newRole)
+          setNewRole("")
+        }
+      }
+      >
+        Create user role
+      </button>
+      {schemaEmpty() && <div><input
         placeholder="Attribute name"
         value={newAttributeName}
         onChange={(event) => {
@@ -130,32 +154,37 @@ function InstitutionSchemaPage() {
             return event.target.value;
           });
         }}
-      ></input>
-      {"attribute type : "}
-      <select
-        value={newAttributeType}
-        onChange={(event) => {
-          setNewAttributeType(() => {
-            return event.target.value;
-          });
-        }}
-      >
-        {dataTypes.map((dataType) => {
-          return (
-            <option key={dataType} value={dataType}>
-              {dataType}
-            </option>
-          );
-        })}
-      </select>
-      <button
-        onClick={() =>
-          createOrChangeAttribute(newAttributeName, newAttributeType)
-        }
-      >
-        Create attribute
-      </button>
-      <button onClick={()=>{updateSchema()}}>Update schema</button>
+      />
+        Attribute Type
+        <select className="attribute-type"
+          value={newAttributeType}
+          onChange={(event) => {
+            setNewAttributeType(() => {
+              return event.target.value;
+            });
+          }}
+        >
+          {dataTypes.map((dataType) => {
+            return (
+              <option key={dataType} value={dataType}>
+                {dataType}
+              </option>
+            );
+          })}
+        </select>
+
+        <button
+          onClick={() => {
+            if(newAttributeName == "") return
+            createOrChangeAttribute(newAttributeName, newAttributeType)
+            setNewAttributeName("")
+          }
+          }
+        >
+          Create attribute
+        </button>
+      </div>}
+      <button onClick={() => { updateSchema() }}>Update schema</button>
     </center>
   );
 }

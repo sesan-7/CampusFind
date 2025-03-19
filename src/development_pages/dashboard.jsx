@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Dashboard.css";
+import "../styles/Dashboard.css";
 import { useAuth } from "../context/AuthContext";
 import LoginForm from "../pages/Login";
 import InstitutionSchemaPage from "./InstitutionMemberSchema";

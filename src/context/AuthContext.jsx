@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
-import { app } from "../firebase/firebase_config.js"; // Ensure correct path
+import { app } from "../firebase/firebase_config.js"; 
 
-const AuthContext = createContext(); // ✅ Creates context
+const AuthContext = createContext(); 
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -16,7 +16,6 @@ export const AuthProvider = ({ children }) => {
       const token = await user.getIdToken();
       setUser(user);
       setToken(token);
-      localStorage.setItem("token", token);
     } catch (error) {
       console.error("Login failed:", error.message);
     }
@@ -26,7 +25,6 @@ export const AuthProvider = ({ children }) => {
     await signOut(auth);
     setUser(null);
     setToken(null);
-    localStorage.removeItem("token");
   };
 
   useEffect(() => {
@@ -35,11 +33,9 @@ export const AuthProvider = ({ children }) => {
         const token = await user.getIdToken();
         setUser(user);
         setToken(token);
-        localStorage.setItem("token", token);
       } else {
         setUser(null);
         setToken(null);
-        localStorage.removeItem("token");
       }
     });
     return () => unsubscribe();

@@ -20,10 +20,6 @@ export default function LoginForm() {
 
   const { login } = authContext || {};
 
-  // useEffect(()=>{
-  //   logout();
-  // },[]);
-
   useEffect(() => {
     console.log(authContext.token);
   }, [authContext.token]);
