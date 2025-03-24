@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/Dashboard.css";
 import { useAuth } from "../context/AuthContext";
-import LoginForm from "../pages/Login";
-import InstitutionSchemaPage from "./InstitutionMemberSchema";
+import LoginForm from "./Login";
+import InstitutionSchemaPage from "./InstitutionMemberSchema.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const [selected, setSelected] = useState("Home");
   const { user, token } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user == null) {
+      alert("You have to login to view the dashboard!");
+      navigate("/login");
+    }
+  }, [user])
 
   return (
     <div className="dashboard-container main-content">
@@ -44,8 +53,8 @@ export default function Dashboard() {
         </div>
 
         {/* Empty Center Pane */}
-          <div className="center-pane">
-            <InstitutionSchemaPage></InstitutionSchemaPage>
+        <div className="center-pane">
+          <InstitutionSchemaPage></InstitutionSchemaPage>
         </div>
       </div>
     </div>

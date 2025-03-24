@@ -12,22 +12,33 @@ function InstitutionSchemaPage() {
   const [newRole, setNewRole] = useState("");
 
   const authContext = useAuth();
-  const { token } = useAuth();
+  const { token, user } = useAuth();
 
   const [schema, setSchema] = useState({
-    // Student: {
-    //   register_id: "string",
-    //   department: "string",
-    //   class: "string",
-    // },
-    // Professor: {
-    //   faculty_id: "string",
-    //   role: "string",
-    //   class: "string",
-    // },
-    // Professor : {name : "Santhosh"}
+    Student: {
+      register_id: "string",
+      department: "string",
+      class: "string",
+    },
+    Professor: {
+      faculty_id: "string",
+      role: "string",
+      class: "string",
+    },
+    Professor: { name: "Santhosh" }
   });
 
+  useEffect(() => {
+    axios.get('http://localhost:8080/get_schema', {
+      headers: {
+        "Content-Type":"application/json",
+        "Authorization": `Bearer ${authContext.token}`
+      }
+    })
+      .then((response) => setSchema(response.data.schema))
+  }, [user])
+
+  
   const updateSchema = () => {
 
     axios
@@ -142,7 +153,7 @@ function InstitutionSchemaPage() {
           createUserRole(newRole)
           setNewRole("")
         }
-      }
+        }
       >
         Create user role
       </button>
@@ -175,7 +186,7 @@ function InstitutionSchemaPage() {
 
         <button
           onClick={() => {
-            if(newAttributeName == "") return
+            if (newAttributeName == "") return
             createOrChangeAttribute(newAttributeName, newAttributeType)
             setNewAttributeName("")
           }

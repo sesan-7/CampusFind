@@ -10,9 +10,9 @@ import About from "../pages/About";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Institution from "../pages/Institution";
-import InstitutionSchemaPage from "../development_pages/InstitutionMemberSchema";
+import InstitutionSchemaPage from "../pages/InstitutionMemberSchema";
 import ProfilePage from "../pages/Profile";
-import Dashboard from "../development_pages/dashboard";
+import Dashboard from "../pages/dashboard";
 import { AuthProvider } from "../context/AuthContext";
 
 export default function BlogRouter() {
