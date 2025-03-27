@@ -4,18 +4,19 @@ import { useAuth } from "../context/AuthContext";
 import LoginForm from "./Login";
 import InstitutionSchemaPage from "./InstitutionMemberSchema.jsx";
 import { useNavigate } from "react-router-dom";
+import UserManagementPage from "./UserManagement.jsx";
 
 export default function Dashboard() {
   const [selected, setSelected] = useState("Home");
   const { user, token } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user == null) {
-      alert("You have to login to view the dashboard!");
-      navigate("/login");
-    }
-  }, [user])
+  // useEffect(() => {
+  //   if (user == null) {
+  //     alert("You have to login to view the dashboard!");
+  //     navigate("/login");
+  //   }
+  // }, [user])
 
   return (
     <div className="dashboard-container main-content">
@@ -28,7 +29,7 @@ export default function Dashboard() {
           {[
             { name: "Home", icon: "🏠" },
             { name: "Member Schema", icon: "" },
-            { name: "Analytics", icon: "📊" },
+            { name: "User Management", icon: "" },
             { name: "Settings", icon: "⚙️" },
             { name: "Log Out", icon: "<- " },
           ].map((item) => (
@@ -54,7 +55,8 @@ export default function Dashboard() {
 
         {/* Empty Center Pane */}
         <div className="center-pane">
-          <InstitutionSchemaPage></InstitutionSchemaPage>
+          {selected === "Member Schema" && <InstitutionSchemaPage />}
+          {selected === "User Management" && <UserManagementPage/>}
         </div>
       </div>
     </div>

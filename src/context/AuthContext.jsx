@@ -14,6 +14,7 @@ export const AuthProvider = ({ children }) => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       const token = await user.getIdToken();
+      console.log("User logged in")
       setUser(user);
       setToken(token);
     } catch (error) {
