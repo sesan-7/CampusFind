@@ -1,33 +1,57 @@
-import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
-import "../styles/Login.css";
-import { Eye, EyeOff } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext.jsx";
+import { useForm } from "react-hook-form"
+import { useEffect, useState } from "react"
+import "../styles/Login.css"
+import { Eye, EyeOff } from "lucide-react"
+import { Link, Navigate, useNavigate } from "react-router-dom"
+import { useAuth } from "../context/AuthContext.jsx"
+import axios from 'axios'
+import Header from "../components/Header.jsx"
 
 export default function LoginForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm()
 
-  const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate()
 
-  const authContext = useAuth();
+  const [showPassword, setShowPassword] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  const { login } = authContext || {};
+  const authContext = useAuth()
+
+  const { login } = authContext || {}
 
   useEffect(() => {
-    console.log(authContext.token);
-  }, [authContext.token]);
+    console.log(authContext.token)
+  }, [authContext.token])
 
   const loginWithEmailAndPassword = async () => {
-    await login(email, password);
-    console.log(authContext.token);
-  };
+    await login(email, password)
+    console.log(authContext.token)
+    
+    axios
+      .get('http://localhost:8080/institution/configuration_status', {
+        headers: {
+          "Authorization": `Bearer ${authContext.token}`
+        }
+      })
+      .then((response) => {
+        console.log(response)
+        console.log(response.data.institution_configuration_status)
+        let institutionRegistered = response.data.institution_configuration_status;
+        
+        if (institutionRegistered) {
+          navigate("/dev/dashboard")
+        }
+        else {
+          navigate("/institution")
+        }
+      })
+      .catch((error) => console.log(error))
+  }
 
   return (
     <div className="main-content">
@@ -38,10 +62,7 @@ export default function LoginForm() {
         </p>
       </div>
       <div className="flex">
-        {/* { user ? ( // ✅ Uses `user` instead of `isLoggedIn`
-          <div className="success-message">Login Successful!</div>
-        ) : ( */}
-        {(<form onSubmit={handleSubmit(loginWithEmailAndPassword)}> {/* ✅ Calls loginWithEmailAndPassword */}
+        {(<form onSubmit={handleSubmit(loginWithEmailAndPassword)}> 
           <h1>Login</h1>
           <input
             className="input"
@@ -72,11 +93,11 @@ export default function LoginForm() {
             {errors.password && <p className="error-message">{errors.password.message}</p>}
           </div>
 
-          <Link to={"/institution"} type="submit">
-            <button type="submit" onClick={() => { loginWithEmailAndPassword() }}>
-              Login
-            </button>
-          </Link>
+          {/* <Link to={"/institution"} type="submit"> */}
+          <button type="submit" onClick={() => { loginWithEmailAndPassword() }}>
+            Login
+          </button>
+          {/* </Link> */}
 
           <div className="redirect">
             <p>
@@ -90,6 +111,6 @@ export default function LoginForm() {
         )}
       </div>
     </div>
-  );
+  )
 }
 
